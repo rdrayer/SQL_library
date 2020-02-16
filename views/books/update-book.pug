@@ -3,7 +3,7 @@ block content
 
   h1 Update Book
   include error
-  form(action=`/books/${book.id}/update-book` method="post")
+  form(action=`/books/${book.id}` method="post")
     p
       label(for="title") Title
       input#title(type="text" name="title" value=book.title)
