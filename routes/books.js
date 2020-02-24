@@ -8,7 +8,7 @@ function asyncHandler(cb){
     try {
       await cb(req, res, next)
     } catch(error){
-      res.status(500).send(error);
+      next(error);
     }
   }
 }
@@ -47,8 +47,8 @@ router.get("/:id", asyncHandler(async(req, res) => {
   if (book) {
     res.render("books/update-book", { book });      
   } else {
-    //res.sendStatus(500);
-    res.render("error");
+    const error = new Error(`Book with id: ${req.params.id} was not found`);
+    throw error;
   };
 }));
 
